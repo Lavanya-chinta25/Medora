@@ -1,33 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Contact from './pages/Contact';
+import About from './pages/About';
+import Home from './pages/Home';
+import Doctors from './pages/Doctors';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const location = useLocation();
+  const isAuthPage = location.pathname === '/Medora/signup' || location.pathname === '/Medora/login'|| location.pathname === '/Medora/doctors';
+  const isHomePage = location.pathname === '/Medora/';
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Medora!!</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          Avishkaar {count}
-        </button>
-        
-      </div>
-      <p className="read-the-docs">
-       Heyy
-      </p>
-    </>
-  )
-}
+      {/* Only render the Navbar on non-authentication pages */}
+      {!isAuthPage && <Navbar />}
 
-export default App
+      {/* Main Content Container */}
+      <div
+        className={isAuthPage ? 'no-margin' : 'page-container'}
+        style={{
+          marginLeft: '2cm',
+          marginRight: '2cm',
+          paddingTop: isHomePage ? '60px' : '0', // Apply padding-top only for Home page
+          transition: 'padding-top 0.3s ease-out', // Smooth transition for scroll
+        }}
+      >
+        <Routes>
+          <Route path="/Medora/" element={<Home />} />
+          <Route path="/Medora/signup" element={<Signup />} />
+          <Route path="/Medora/login" element={<Login />} />
+          <Route path="/Medora/contact" element={<Contact />} />
+          <Route path="/Medora/about" element={<About />} />
+          <Route path="/Medora/doctors" element={<Doctors />} />
+        </Routes>
+        {!isAuthPage && <Footer />}
+      </div>
+    </>
+  );
+};
+
+
+export default App;
