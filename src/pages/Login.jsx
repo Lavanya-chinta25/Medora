@@ -127,7 +127,7 @@ function Login() {
           <p className="text-lg">
             Please enter your credentials to login to your account.
           </p>
-          <div className="mt-4 text-[20px] font-bold text-white-500">
+          <div  className="mt-4 text-[20px] font-bold text-white-500">
             Don't have an account?{' '}
             <Link to="/Medora/signup" className="font-bold text-[#519FC4] hover:text-[#bbdef1]">
               Sign Up

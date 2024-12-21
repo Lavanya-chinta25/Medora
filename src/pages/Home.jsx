@@ -40,7 +40,7 @@ const Home = () => {
 
       {/* Buttons and Dots (Outside the Image Container) */}
       <div className="flex flex-col items-center mt-6">
-        {/* Buttons */}
+        {/* Buttons  */}
         <div className="flex justify-center space-x-4">
           <button className="bg-[#185A79] text-white px-4 py-2 rounded hover:bg-[#153D55]">
             Chat with Us

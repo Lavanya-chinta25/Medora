@@ -26,7 +26,7 @@ const Navbar = () => {
           <ul className="hidden md:flex items-center justify-center gap-6 text-[18px] font-medium">
             {/* Navigation Items */}
             {[
-              { to: '/Medora/', label: 'HOME', icon: <FaHome /> },
+              { to:'/Medora/', label: 'HOME', icon: <FaHome /> },
               { to: '/Medora/doctors', label: 'DOCTORS', icon: <FaUserMd /> },
               { to: '/Medora/about', label: 'ABOUT', icon: <FaInfoCircle /> },
               { to: '/Medora/contact', label: 'CONTACT', icon: <FaPhoneAlt /> },

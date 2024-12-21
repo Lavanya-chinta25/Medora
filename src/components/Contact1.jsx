@@ -56,7 +56,7 @@ const Contact1 = () => {
           </div>
           {/* Card 3 */}
           <div
-            className="bg-white text-[#519fc4] rounded-lg shadow-lg p-4 text-center transition-all transform duration-300 hover:scale-105 hover:shadow-xl hover:w-[80%] hover:translate-y-[-10px]"
+            className ="bg-white text-[#519fc4] rounded-lg shadow-lg p-4 text-center transition-all transform duration-300 hover:scale-105 hover:shadow-xl hover:w-[80%] hover:translate-y-[-10px]"
             style={{
               width: "75%", // Default width
               height: "160px",

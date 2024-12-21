@@ -44,7 +44,7 @@ const About = () => {
         {/* Left Column */}
         <div
           className="bg-cover bg-center h-full"
-          style={{ backgroundImage: `url(${image3})` }}
+        style={{ backgroundImage: `url(${image3})` }}
         ></div>
         {/* Right Column */}
         <div className="flex flex-col justify-center bg-[#97dbff] text-gray-30 px-8 h-full">

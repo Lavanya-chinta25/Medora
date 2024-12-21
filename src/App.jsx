@@ -11,8 +11,9 @@ import Doctors from './pages/Doctors';
 
 const App = () => {
   const location = useLocation();
-  const isAuthPage = location.pathname === '/Medora/signup' || location.pathname === '/Medora/login'|| location.pathname === '/Medora/doctors';
+  const isAuthPage = location.pathname === '/Medora/signup' || location.pathname === '/Medora/login' || location.pathname === '/Medora/doctors';
   const isHomePage = location.pathname === '/Medora/';
+  const isLoginOrSignup = location.pathname === '/Medora/signup' || location.pathname === '/Medora/login';
 
   return (
     <>
@@ -23,8 +24,8 @@ const App = () => {
       <div
         className={isAuthPage ? 'no-margin' : 'page-container'}
         style={{
-          marginLeft: '2cm',
-          marginRight: '2cm',
+          marginLeft: isLoginOrSignup ? '0' : '2cm', // No margin for login/signup pages
+          marginRight: isLoginOrSignup ? '0' : '2cm', // No margin for login/signup pages
           paddingTop: isHomePage ? '60px' : '0', // Apply padding-top only for Home page
           transition: 'padding-top 0.3s ease-out', // Smooth transition for scroll
         }}
@@ -42,6 +43,5 @@ const App = () => {
     </>
   );
 };
-
-
+ 
 export default App;

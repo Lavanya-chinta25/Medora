@@ -288,7 +288,7 @@ function Signup() {
               <button
                 type="submit"
                 className="w-full py-3 mt-4 bg-[#153d55] text-white font-semibold rounded-lg hover:bg-[#519FC4]"
-              >
+               >
                 Sign Up
               </button>
             </form>

@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import doctorsData from "./doctordata.json";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const DoctorsPage = () => {
   const [pincode, setPincode] = useState("");
@@ -113,7 +114,7 @@ const DoctorsPage = () => {
           ))}
         </div>
 
-        {/* Doctor Cards */}
+        {/* Doctor Cards */} 
         <div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           ref={resultsRef}
@@ -226,8 +227,10 @@ const DoctorsPage = () => {
         )}
 
       </div>
-    </>
+      <Footer/>
+          </>
   );
 };
 
 export default DoctorsPage;
+

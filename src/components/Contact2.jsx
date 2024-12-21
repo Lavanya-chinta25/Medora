@@ -58,7 +58,7 @@ const Contact2 = () => {
             We’re committed to providing accessible healthcare to rural communities,
             offering consultations, treatments, and preventative care.
           </p>
-          <div className="border rounded-lg overflow-hidden">
+          <div  className="border rounded-lg overflow-hidden">
             <img
               src={location}
               alt="Location Map"
