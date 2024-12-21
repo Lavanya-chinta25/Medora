@@ -1,6 +1,11 @@
 import React from "react";
-
+import { useNavigate } from 'react-router-dom';
 const Footer = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/Medora/'); // This will take you to the doctors page
+  };
   return (
     <footer className="relative text-white overflow-hidden">
       {/* Wavy Background */}
@@ -42,7 +47,7 @@ const Footer = () => {
         <p className="text-lg md:text-xl text-gray-200 mb-0">
           Medora connects you with the best doctors across India. Know where doctors are available and easily book appointments based on their availability.
         </p>
-        <button  className="bg-gray-200 text-[#153D55] font-bold px-6 py-3 rounded-full hover:bg-[#185a79] hover:text-white transition-all mt-4">
+        <button onClick={handleClick} className="bg-gray-200 text-[#153D55] font-bold px-6 py-3 rounded-full hover:bg-[#185a79] hover:text-white transition-all mt-4">
           Take the Tour
         </button>
         <hr className="my-3 border-t-1 border-[#d5d5d5d4]" />

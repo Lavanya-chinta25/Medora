@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
@@ -14,6 +14,10 @@ const App = () => {
   const isAuthPage = location.pathname === '/Medora/signup' || location.pathname === '/Medora/login' || location.pathname === '/Medora/doctors';
   const isHomePage = location.pathname === '/Medora/';
   const isLoginOrSignup = location.pathname === '/Medora/signup' || location.pathname === '/Medora/login';
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to top whenever the location changes
+  }, [location]);
 
   return (
     <>
