@@ -1,0 +1,21 @@
+<<<<<<< HEAD
+=======
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #153d55;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #e4e4e4;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #153d55 #e4e4e4;
+}
+>>>>>>> fbeede9d9f74bb4edfebd4c9ce9fe96d6ec30615

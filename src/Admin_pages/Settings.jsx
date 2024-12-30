@@ -148,8 +148,13 @@ const Settings = () => {
                     <p className="text-sm text-gray-600">Location: {doctor.location}</p>
                   </div>
                   <div className="flex items-center space-x-2">
+<<<<<<< HEAD
                     <button className="text-blue-500 hover:text-blue-700">✏</button>
                     <button className="text-red-500 hover:text-red-700">🗑</button>
+=======
+                    <button className="text-blue-500 hover:text-blue-700">✏️</button>
+                    <button className="text-red-500 hover:text-red-700">🗑️</button>
+>>>>>>> fbeede9d9f74bb4edfebd4c9ce9fe96d6ec30615
                   </div>
                 </div>
               ))}
@@ -215,4 +220,8 @@ const Settings = () => {
   );
 };
 
+<<<<<<< HEAD
 export default Settings;
+=======
+export default Settings;
+>>>>>>> fbeede9d9f74bb4edfebd4c9ce9fe96d6ec30615

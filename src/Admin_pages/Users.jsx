@@ -277,4 +277,8 @@ const Users = () => {
   );
 };
 
+<<<<<<< HEAD
 export default Users;
+=======
+export default Users;
+>>>>>>> fbeede9d9f74bb4edfebd4c9ce9fe96d6ec30615

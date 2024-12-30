@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { MdDashboard, MdMessage, MdSettings, MdPeopleAlt } from 'react-icons/md';
 import Logo from '../assets/logo.png';
+<<<<<<< HEAD
 import  './Navbar.css';
+=======
+
+>>>>>>> fbeede9d9f74bb4edfebd4c9ce9fe96d6ec30615
 const Admin_Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
 
@@ -18,7 +22,11 @@ const Admin_Navbar = () => {
         }}
       >
         {/* Logo */}
+<<<<<<< HEAD
         <img className="w-[200px] im-logo  cursor-pointer" src={Logo} alt="Logo" />
+=======
+        <img className="w-[200px] cursor-pointer" src={Logo} alt="Logo" />
+>>>>>>> fbeede9d9f74bb4edfebd4c9ce9fe96d6ec30615
 
         {/* Navigation Links */}
         <nav className="flex justify-center items-center w-full">
@@ -86,4 +94,8 @@ const Admin_Navbar = () => {
   );
 };
 
+<<<<<<< HEAD
 export default Admin_Navbar;
+=======
+export default Admin_Navbar;
+>>>>>>> fbeede9d9f74bb4edfebd4c9ce9fe96d6ec30615

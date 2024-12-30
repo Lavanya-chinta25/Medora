@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
+<<<<<<< HEAD
 
 // const fs = require('fs');
+=======
+import messagesData from "./message_data.json"; // Import the JSON file
+
+>>>>>>> fbeede9d9f74bb4edfebd4c9ce9fe96d6ec30615
 const MessageManagement = () => {
   const [messages, setMessages] = useState([]);
   const [filter, setFilter] = useState("All Messages");
@@ -8,7 +13,14 @@ const MessageManagement = () => {
   const [sortOrder, setSortOrder] = useState("Newest First");
   const [currentPage, setCurrentPage] = useState(1);
   const [messagesPerPage] = useState(3);
+<<<<<<< HEAD
     
+=======
+
+  useEffect(() => {
+    setMessages(messagesData);
+  }, []);
+>>>>>>> fbeede9d9f74bb4edfebd4c9ce9fe96d6ec30615
 
   // Handle pagination logic
   const indexOfLastMessage = currentPage * messagesPerPage;
@@ -156,4 +168,8 @@ const MessageManagement = () => {
   );
 };
 
+<<<<<<< HEAD
 export default MessageManagement;
+=======
+export default MessageManagement;
+>>>>>>> fbeede9d9f74bb4edfebd4c9ce9fe96d6ec30615
