@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Route, Routes, useLocation,Navigate } from 'react-router-dom';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Navbar from './components/Navbar';
@@ -7,13 +7,30 @@ import Footer from './components/Footer';
 import Contact from './pages/Contact';
 import About from './pages/About';
 import Home from './pages/Home';
+import Profile from './pages/Profile.jsx'
 import Doctors from './pages/Doctors';
+import RefreshHandler from './RefreshHandler.jsx';
+import Chatbot from './chatbot/chatbot.jsx'
+import Admin_Navbar from './components/Admin_Navbar';
+import Medicine from './pages/Medicines';
+import Dashboard from './Admin_pages/Dashboard';
+import Messages from './Admin_pages/Messages';
+import Settings from './Admin_pages/Settings';
+import Users from './Admin_pages/Users';
+
 
 const App = () => {
   const location = useLocation();
-  const isAuthPage = location.pathname === '/Medora/signup' || location.pathname === '/Medora/login' || location.pathname === '/Medora/doctors';
-  const isHomePage = location.pathname === '/Medora/';
-  const isLoginOrSignup = location.pathname === '/Medora/signup' || location.pathname === '/Medora/login';
+  const [isAuthenticated, setIsAuthenticated] = useState("");
+  const isAuthPage =
+    location.pathname === '/Medora/signup' ||
+    location.pathname === '/Medora/login' ||
+    location.pathname === '/Medora/doctors';
+
+  const isLoginOrSignup =
+    location.pathname === '/Medora/signup' || location.pathname === '/Medora/login';
+
+  const isMedicinesPage = location.pathname === '/Medora/medicines';
 
   useEffect(() => {
     window.scrollTo(0, 0); // Scroll to top whenever the location changes
@@ -21,8 +38,9 @@ const App = () => {
 
   return (
     <>
-      {/* Only render the Navbar on non-authentication pages */}
-      {!isAuthPage && <Navbar />}
+    <RefreshHandler setIsAuthenticated={setIsAuthenticated} />
+      {/* Conditional Navbar */}
+      {isAuthenticated === "6304330681" ? <Admin_Navbar /> : !isAuthPage && <Navbar />}
 
       {/* Main Content Container */}
       <div
@@ -30,22 +48,40 @@ const App = () => {
         style={{
           marginLeft: isLoginOrSignup ? '0' : '2cm', // No margin for login/signup pages
           marginRight: isLoginOrSignup ? '0' : '2cm', // No margin for login/signup pages
-          paddingTop: isHomePage ? '60px' : '0', // Apply padding-top only for Home page
-          transition: 'padding-top 0.3s ease-out', // Smooth transition for scroll
         }}
       >
         <Routes>
-          <Route path="/Medora/" element={<Home />} />
-          <Route path="/Medora/signup" element={<Signup />} />
-          <Route path="/Medora/login" element={<Login />} />
-          <Route path="/Medora/contact" element={<Contact />} />
-          <Route path="/Medora/about" element={<About />} />
-          <Route path="/Medora/doctors" element={<Doctors />} />
+          {isAuthenticated === '6304330681' ? (
+            // Admin Routes
+            <>
+              <Route path="/Medora/" element={<Navigate to="/Medora/dashboard" replace />} />
+              <Route path="/Medora/home" element={<Navigate to="/Medora/dashboard" replace />} />
+              <Route path="/Medora/dashboard" element={<Dashboard />} />
+              <Route path="/Medora/messages" element={<Messages />} />
+              <Route path="/Medora/settings" element={<Settings />} />
+              <Route path="/Medora/users" element={<Users />} />
+            </>
+          ) : (
+            // Regular User Routes
+            <>
+              <Route path="/Medora/" element={<Home />} />
+              <Route path="/Medora/home" element={<Home />} />
+              <Route path="/Medora/bot" element={<Chatbot />} />
+              <Route path="/Medora/signup" element={<Signup />} />
+              <Route path="/Medora/login" element={<Login />} />
+              <Route path="/Medora/contact" element={<Contact />} />
+              <Route path="/Medora/about" element={<About />} />
+              <Route path="/Medora/doctors" element={<Doctors />} />
+              <Route path="/Medora/medicines" element={<Medicine />} />
+            </>
+          )}
         </Routes>
-        {!isAuthPage && <Footer />}
+
+        {/* Footer for non-auth pages and excluding /medicines */}
+        {!isAuthPage && !isMedicinesPage && <Footer />}
       </div>
     </>
   );
 };
- 
+
 export default App;

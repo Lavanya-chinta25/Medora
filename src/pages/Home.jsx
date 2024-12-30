@@ -13,6 +13,9 @@ const Home = () => {
   const handleClick = () => {
     navigate('/Medora/doctors'); // This will take you to the doctors page
   };
+  const handleClick2 = () => {
+    navigate('/Medora/bot'); // This will take you to the doctors page
+  };
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Automatically switch images
@@ -48,7 +51,7 @@ const Home = () => {
       <div className="flex flex-col items-center mt-6">
         {/* Buttons  */}
         <div className="flex justify-center space-x-4">
-          <button className="bg-[#185A79] text-white px-4 py-2 rounded hover:bg-[#153D55]">
+          <button className="bg-[#185A79] text-white px-4 py-2 rounded hover:bg-[#153D55]"  onClick={handleClick2}>
             Chat with Us
           </button>
           <button className="bg-[#185a79] text-white px-4 py-2 rounded hover:bg-[#153D55]" onClick={handleClick}>

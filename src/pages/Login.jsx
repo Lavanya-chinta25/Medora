@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import backgroundImage from '../assets/background.jpeg';
+import { toast, ToastContainer } from 'react-toastify'; // Import ToastContainer and toast
+import 'react-toastify/dist/ReactToastify.css'; 
 
 function Login() {
   const [formData, setFormData] = useState({
-    email: '',
+    contact: '',
     password: '',
   });
 
+  const navigate = useNavigate();
   const [errors, setErrors] = useState({
-    email: '',
+    contact: '',
     password: '',
   });
 
@@ -22,15 +25,12 @@ function Login() {
 
   // Validate the form data
   const validate = () => {
-    let tempErrors = { email: '', password: '' };
+    let tempErrors = { contact: '', password: '' };
     let isValid = true;
 
     // Validate email
-    if (!formData.email) {
-      tempErrors.email = 'Email is required';
-      isValid = false;
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      tempErrors.email = 'Email is invalid';
+    if (!formData.contact) {
+      tempErrors.contact = 'contact is required';
       isValid = false;
     }
 
@@ -45,12 +45,59 @@ function Login() {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => {
     e.preventDefault();
     setIsSubmitted(true);
 
     if (validate()) {
       console.log('Form submitted:', formData);
+      try {
+        const url = `http://localhost:8080/auth/login`;
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+        const result = await response.json();
+        console.log(result)
+        const { success, message, jwttoken, contact, error } = result;
+        if (success) {
+          // Show success toast
+          toast.success('Login Successful!', {
+            position: 'top-center',
+            autoClose: 3000, // Toast will disappear after 3 seconds
+          });
+            // handleSuccess(message);
+localStorage.setItem('token', result.jwttoken);
+
+            localStorage.setItem('loggedInUser', contact);
+            setTimeout(() => {
+                navigate('/Medora/home')
+            }, 1000)
+        } else if (error) {
+            const details = error?.details[0].message;
+            // handleError(details);
+            toast.error(details || 'Something went wrong, please try again', {
+            position: 'top-center',
+            autoClose: 3000,
+          });
+        } else if (!success) {
+            // handleError(message);
+            toast.error(message || 'Login failed. Please try again', {
+              position: 'top-center',
+              autoClose: 3000,
+            });
+        }
+        console.log(result);
+    } catch (err) {
+        // handleError(err);
+        toast.error('An error occurred while logging in. Please try again.', {
+          position: 'top-center',
+          autoClose: 3000,
+        });
+    }
     }
   };
 
@@ -83,15 +130,15 @@ function Login() {
 
               <div>
                 <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  value={formData.email}
+                  type="number"
+                  name="contact"
+                  placeholder="Mobile Number"
+                  value={formData.contact}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-[#153D55] ${formData.email && 'border-[#153D55]'}`}
+                  className={`w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-[#153D55] ${formData.contact && 'border-[#153D55]'}`}
                 />
-                {isSubmitted && errors.email && (
-                  <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                {isSubmitted && errors.contact && (
+                  <p className="text-red-500 text-sm mt-1">{errors.contact}</p>
                 )}
               </div>
 
@@ -135,6 +182,7 @@ function Login() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

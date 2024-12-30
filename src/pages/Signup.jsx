@@ -1,11 +1,12 @@
 import React, { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import backgroundImage from '../assets/background.jpeg';
+import { ToastContainer,toast } from 'react-toastify'; 
+import 'react-toastify/dist/ReactToastify.css'; 
 
 function Signup() {
   const [formData, setFormData] = useState({
     fullName: '',
-    email: '',
     password: '',
     confirmPassword: '',
     contact: '',
@@ -15,7 +16,7 @@ function Signup() {
     state: '',
     pincode: '',
   });
-
+  const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const [focusedField, setFocusedField] = useState(null); // To track the focused field
   const scrollableRef = useRef(null);
@@ -35,7 +36,6 @@ function Signup() {
   const validateForm = () => {
     const newErrors = {};
     if (!formData.fullName) newErrors.fullName = "Full Name is required.";
-    if (!formData.email) newErrors.email = "Email is required.";
     if (!formData.password) newErrors.password = "Password is required.";
     if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = "Passwords must match.";
     if (!formData.contact) newErrors.contact = "Contact is required.";
@@ -48,13 +48,41 @@ function Signup() {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formErrors = validateForm();
     setErrors(formErrors);
 
     if (Object.keys(formErrors).length === 0) {
-      console.log('Form submitted:', formData);
+      try {
+        const url = `http://localhost:8080/auth/signup`;
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+        const result = await response.json();
+        const { success, message, error } = result;
+
+        if (success) {
+          toast.success("Signup successful! Please log in."); // Show success toast
+          setTimeout(() => {
+            navigate('/Medora/login');
+          }, 1000);
+        } else if (error) {
+          toast.error(`Error: ${error.details[0].message}`); // Show error toast
+        } else if (!success) {
+          toast.error(message || "Signup failed! Please try again."); // Show general error toast
+        }
+
+      } catch (err) {
+        toast.error("Something went wrong. Please try again later.");
+      }
+    } else {
+      // If there are form errors, show them
+      toast.error("Please fill in all required fields correctly.");
     }
   };
 
@@ -90,7 +118,7 @@ function Signup() {
 
         {/* Right Section (Form) */}
         <div className="w-1/2 relative flex items-center justify-center">
-          <div className="absolute top-[-50px] bottom-[-50px] left-[5%] right-[5%] w-[90%] bg-[#9cd4f2] p-12 rounded-lg z-10">
+          <div className="absolute top-[-30px] bottom-[-30px] left-[5%] right-[5%] w-[90%] bg-[#9cd4f2] p-12 rounded-lg z-10">
             <form onSubmit={handleSubmit} className="flex flex-col space-y-4 h-full">
               {/* Signup Heading */}
               <h3 className="text-[28px] font-bold text-[#153D55] mb-4">Sign Up</h3>
@@ -135,22 +163,6 @@ function Signup() {
                     required
                   />
                   {errors.fullName && <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>}
-                </div>
-
-                {/* Email */}
-                <div>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    onFocus={handleFocus}
-                    onBlur={handleBlur}
-                    className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none ${errors.email || (focusedField === 'email' && !formData.email) ? 'border-red-500' : 'border-[#153d55]'} ${focusedField === 'email' ? 'border-[3px]' : ''}`}
-                    required
-                  />
-                  {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
                 </div>
 
                 {/* Password */}
@@ -295,6 +307,8 @@ function Signup() {
           </div>
         </div>
       </div>
+
+      <ToastContainer />
     </div>
   );
 }

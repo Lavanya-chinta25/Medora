@@ -1,58 +1,143 @@
 import React from "react";
-import image1 from "../assets/about.jpg";
-import image3 from "../assets/about5.png";
+/*import image1 from "../assets/about.jpg";
+import image3 from "../assets/about5.png";*/
 
 const About = () => {
   return (
-    <div className="mt-24">
-      {/* First Row */}
-      <div className="grid grid-cols-2 h-[250px]"> {/* Reduced height */}
-        {/* Left Column */}
-        <div className="flex flex-col justify-center bg-[#153d55] text-white px-12">
-          <h1 className="text-3xl font-bold mb-4">Welcome to Medora!</h1>
-          <p className="text-lg leading-relaxed">
-            Connecting patients with specialists and providing tools to manage health effectively.
+    <div className="bg-white-100 min-h-screen">
+      {/* Main Section */}
+      <main className="container mx-auto py-12 px-6">
+        {/* About Us Section */}
+        <section className="text-center mb-12">
+          <h1
+            className="text-4xl font-bold mb-4"
+            style={{ color: "#185A79" }}
+          >
+            About Us
+          </h1>
+          <p className="text-gray-500">
+            We are dedicated to providing exceptional healthcare services with
+            compassion and expertise. Our mission is to improve the health and
+            well-being of our community through innovative medical solutions and
+            patient-centered care.
           </p>
-        </div>
-        {/* Right Column */}
-        <div
-          className="bg-cover bg-center h-full"
-          style={{ backgroundImage: `url(${image1})` }}
-        ></div>
-      </div>
+        </section>
 
-      {/* Second Row */}
-      <div className="flex h-[350px]">
-        {/* Left Column (rotated) */}
-        <div className="flex items-center justify-center bg-[#bbdef1] text-[#153d55] w-1/4 h-full">
-          <p className="rotate-[-90deg] text-5xl font-bold">About Us</p>
-        </div>
-        {/* Middle Column */}
-        <div className="flex flex-col justify-center px-16 bg-white opacity-80 w-1/2 h-full"> 
-          <p className="leading-relaxed text-justify text-gray-900 mx-8">
-            Medora is dedicated to providing accessible healthcare by connecting patients with the right specialists in their area. Our platform helps users find healthcare professionals based on symptoms, medical history, and location, making healthcare more accessible and transparent. We also provide support for managing medications and timely reminders, ensuring that patients stay on track with their health regimens.
-          </p>
-        </div>
-        {/* Right Column */}
-        <div className="bg-[#185a79] text-[#cbe8f8] bg-opacity-80 flex items-center justify-center px-8 w-1/4 h-full">
-          <p className="rotate-[90deg] text-5xl font-bold">Medora.</p>
-        </div>
-      </div>
+        {/* Services Section */}
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          {[
+            {
+              title: "Care & Compassion",
+              description: "Delivering healthcare services with empathy and understanding.",
+              emoji: "❤",
+              emojiColor: "text-red-500",
+            },
+            {
+              title: "Expert Team",
+              description: "Highly qualified medical professionals dedicated to your health.",
+              emoji: "👨‍⚕",
+              emojiColor: "text-blue-500",
+            },
+            {
+              title: "Quality Service",
+              description: "Committed to maintaining the highest standards of medical care.",
+              emoji: "🌟",
+              emojiColor: "text-yellow-500",
+            },
+          ].map((item, index) => (
+            
+            
+            <div
+              key={index}
+              className="bg-white shadow-md p-6 text-center rounded-lg hover:shadow-lg transform hover:scale-105 transition duration-300"
+              >
+             <div className={`text-4xl mb-4 ${item.emojiColor}`}>{item.emoji}</div>
+              <h2 className="font-bold text-lg mb-2" style={{ color: "#185A79" }}>
+                {item.title}
+              </h2>
+              <p className="text-gray-500">{item.description}</p>
+            </div>
+            
+          ))}
+        </section>
 
-      {/* Third Row */}
-      <div className="grid grid-cols-2 h-[200px] bg-[#185a79]">
-        {/* Left Column */}
-        <div
-          className="bg-cover bg-center h-full"
-        style={{ backgroundImage: `url(${image3})` }}
-        ></div>
-        {/* Right Column */}
-        <div className="flex flex-col justify-center bg-[#97dbff] text-gray-30 px-8 h-full">
-          <p className="leading-relaxed text-justify">
-            Our vision is to empower individuals with easy access to healthcare information, making it simpler for everyone to navigate their health journey. We strive to provide the tools and support needed for a healthier, more informed community.
-          </p>
-        </div>
-      </div>
+        {/* What is Medora Section */}
+        <section className="mb-12">
+          <div className="text-center mb-6">
+            <h2
+              className="text-2xl font-bold"
+              style={{ color: "#185A79" }}
+            >
+              What is Medora?
+            </h2>
+          </div>
+          <div className="bg-white shadow-md p-8 rounded-lg hover:shadow-lg transform hover:scale-105 transition duration-300">
+            <p className="text-gray-500 mb-2">
+              Medora is dedicated to providing accessible healthcare by connecting
+              patients with the right specialists in their area.
+            </p>
+            <p className="text-gray-500 mb-2">
+              Our platform helps users find healthcare professionals based on
+              symptoms, medical history, and location, making healthcare more
+              accessible and transparent.
+            </p>
+            <p className="text-gray-500">
+              We also provide support for managing medications and timely
+              reminders, ensuring that patients stay on track with their health
+              regimens.
+            </p>
+          </div>
+        </section>
+
+        {/* Our Values Section */}
+        <section className="bg-white shadow-md p-8 rounded-lg mb-12">
+          <h2
+            className="text-2xl font-bold mb-6 text-center"
+            style={{ color: "#185A79" }}
+          >
+            Our Values
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {[
+              {
+                title: "Integrity",
+                description: "Maintaining highest ethical standards",
+                emoji: "🤝",
+                emojiColor: "text-blue-500",
+              },
+              {
+                title: "Teamwork",
+                description: "Collaborating for better outcomes",
+                emoji: "🤝",
+                emojiColor: "text-green-500",
+              },
+              {
+                title: "Excellence",
+                description: "Striving for the best results",
+                emoji: "🌟",
+                emojiColor: "text-yellow-500",
+              },
+              {
+                title: "Innovation",
+                description: "Embracing new solutions",
+                emoji: "💡",
+                emojiColor: "text-purple-500",
+              },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="bg-gray-50 shadow-md p-6 text-center rounded-lg hover:shadow-lg transform hover:scale-105 transition duration-300"
+              >
+                 <div className={`text-4xl mb-4 ${item.emojiColor}`}>{item.emoji}</div>
+                <h3 className="font-bold text-lg mb-2" style={{ color: "#185A79" }}>
+                  {item.title}
+                </h3>
+                <p className="text-gray-500">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </main>
     </div>
   );
 };

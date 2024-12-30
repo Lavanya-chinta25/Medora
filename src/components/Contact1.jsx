@@ -16,7 +16,7 @@ const Contact1 = () => {
       {/* Content */}
       <div
         className="relative z-20 px-6 py-12 text-center text-white"
-        style={{ marginTop: "100px" }} // Adjusted margin for alignment
+        style={{ marginTop: "10px" }} // Adjusted margin for alignment
       >
         <h1 className="text-4xl md:text-5xl font-bold mb-10">Contact Us</h1>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
